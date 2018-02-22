@@ -1,8 +1,10 @@
 Predict the gender of a name based on statistical data.
+
 # Install
 ```bash
 pip install namegender
 ```
+
 # Usage
 ```python
 >>> import namegender
