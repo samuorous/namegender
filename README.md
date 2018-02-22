@@ -1,4 +1,4 @@
-Predict the gender of a name based on statistical data
+Predict the gender of a name based on statistical data.
 # Install
 ```bash
 pip install namegender

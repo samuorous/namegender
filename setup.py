@@ -19,7 +19,7 @@ except:
 
 setup(
     name='namegender',
-    version='1.0.0',
+    version='1.0.1',
     description='Predict the gender of a name based on statistic data',
     long_description=long_description,
     url='https://github.com/samuorous/namegender',
