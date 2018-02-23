@@ -25,12 +25,17 @@ class TestNamegender(TestCase):
         self.assertTrue(any(key in mapping['otto'] for key in ['male', 'female']))
 
     def test_predict(self):
+        # Predict name in data
         prediction = namegender.predict('Otto')
         self.assertEqual(prediction['gender'], 'male')
+        # Predict using explicit mapping
         prediction = namegender.predict('jane', {'jane': {'female': 75, 'male': 25}})
         self.assertEqual(prediction['gender'], 'female')
         self.assertEqual(prediction['probability'], 75)
         self.assertEqual(prediction['samples'], 100)
+        # Predict name not in data.
+        prediction = namegender.predict('Oofewefowqidqnxcqoenwoqiw')
+        self.assertEqual(prediction['gender'], 'unknown')
 
     def test_predict_list(self):
         prediction = namegender.predict_list(['Jhon', 'Jane'])
