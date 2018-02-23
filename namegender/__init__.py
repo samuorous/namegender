@@ -41,8 +41,6 @@ def get_mapping():
     except IOError:
         reload_mapping()
         return get_mapping()
-    except Exception as e:
-        raise e
 
 
 def predict(name, mapping=None):
@@ -67,26 +65,23 @@ def predict(name, mapping=None):
         'samples': 0
     }
     name = name.lower().strip()  # normalize name
+    # Load the mapping
+    if mapping is None:
+        mapping = get_mapping()
     try:
-        # Load the mapping
-        if mapping is None:
-            mapping = get_mapping()
-        try:
-            result['samples'] = mapping[name]['female'] + mapping[name]['male']
-            assert result['samples'] > 0
+        result['samples'] = mapping[name]['female'] + mapping[name]['male']
+        assert result['samples'] > 0
 
-            # Compute the ratio.
-            if mapping[name]['female'] >= mapping[name]['male']:
-                result['gender'] = 'female'
-                result['probability'] = 100 * (mapping[name]['female'] / (result['samples']))
-            else:
-                result['gender'] = 'male'
-                result['probability'] = 100 * (mapping[name]['male'] / (result['samples']))
-        except KeyError:
-            # Name not in mapping.
-            pass
-    except Exception as e:
-        raise e
+        # Compute the ratio.
+        if mapping[name]['female'] >= mapping[name]['male']:
+            result['gender'] = 'female'
+            result['probability'] = 100 * (mapping[name]['female'] / (result['samples']))
+        else:
+            result['gender'] = 'male'
+            result['probability'] = 100 * (mapping[name]['male'] / (result['samples']))
+    except KeyError:
+        # Name not in mapping.
+        pass
 
     return result
 
