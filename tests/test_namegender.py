@@ -9,6 +9,7 @@ import pkg_resources
 from unittest import TestCase
 
 MAPPING_PICKLE = pkg_resources.resource_filename('namegender', 'data/mapping.pickle')
+here = os.path.abspath(os.path.dirname(__file__))
 
 
 class TestNamegender(TestCase):
@@ -43,3 +44,13 @@ class TestNamegender(TestCase):
         self.assertEqual(len(prediction), 2)
         self.assertEqual(prediction[0]['gender'], 'male')
         self.assertEqual(prediction[1]['gender'], 'female')
+
+    def test_corrupted_data(self):
+        namegender.MAPPING_TXT = os.path.join(here, 'data', 'corrupted_mapping_text.txt')
+        namegender.reload_mapping()
+        # Prediction should still work for correct lines.
+        prediction = namegender.predict('aadarsh')
+        self.assertEqual(prediction['gender'], 'male')
+        # Set back to correct data.
+        namegender.MAPPING_TXT = pkg_resources.resource_filename('namegender', 'data/gender_name_mapping.txt')
+        namegender.reload_mapping()
