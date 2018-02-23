@@ -1,0 +1,19 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.4"
+
+install:
+  - pip install -r requirements-dev.txt
+  # Install namegender.
+  - pip install -e .
+  # Print python information.
+  - which python
+  - python --version
+  - which pip
+  - pip --version
+
+script:
+  # Run tests.
+  -  py.test -v -rs tests

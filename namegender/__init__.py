@@ -109,6 +109,3 @@ def predict_list(names):
     for name in names:
         result.append(predict(name, mapping))
     return result
-
-if __name__ == '__main__':
-    print(predict_list(['samusaael', 'Samuel', 'hannah']))
