@@ -1,4 +1,4 @@
-# namegender [![Build Status](https://travis-ci.org/samuorous/namegender.svg?branch=master)](https://travis-ci.org/samuorous/namegender)
+# namegender [![Build Status](https://travis-ci.org/samuorous/namegender.svg?branch=master)](https://travis-ci.org/samuorous/namegender) [![Coverage Status](https://coveralls.io/repos/github/samuorous/namegender/badge.svg?branch=master)](https://coveralls.io/github/samuorous/namegender?branch=master)
 Predict the gender of a name based on statistical data.
 
 # Install
