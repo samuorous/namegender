@@ -1,3 +1,4 @@
+# namegender [![Build Status](https://travis-ci.org/samuorous/namegender.svg?branch=master)](https://travis-ci.org/samuorous/namegender)
 Predict the gender of a name based on statistical data.
 
 # Install
