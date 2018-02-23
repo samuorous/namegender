@@ -35,4 +35,5 @@ setup(
         'Bug Reports': 'https://github.com/samuorous/namegender/issues',
         'Source': 'https://github.com/samuorous/namegender',
     },
+    test_suite="tests.get_tests",
 )
