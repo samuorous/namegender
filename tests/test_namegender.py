@@ -25,6 +25,16 @@ class TestNamegender(TestCase):
         self.assertEqual(type(mapping['otto']), dict)
         self.assertTrue(any(key in mapping['otto'] for key in ['male', 'female']))
 
+        # After deleting the mapping, get_mapping should bring the mapping pickle back up.
+        os.remove(MAPPING_PICKLE)
+        mapping = namegender.get_mapping()
+        self.assertTrue(os.path.isfile(MAPPING_PICKLE))
+        self.assertTrue(os.path.exists(MAPPING_PICKLE))
+        self.assertEqual(type(mapping), dict)
+        self.assertTrue('otto' in mapping)
+        self.assertEqual(type(mapping['otto']), dict)
+        self.assertTrue(any(key in mapping['otto'] for key in ['male', 'female']))
+
     def test_predict(self):
         # Predict name in data
         prediction = namegender.predict('Otto')
